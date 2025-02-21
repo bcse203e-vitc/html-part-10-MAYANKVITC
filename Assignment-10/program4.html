@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Table Generator</title>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <h1>Multiplication Table Generator</h1>
+
+    <fieldset>
+        <legend>Enter a Number</legend>
+        <label for="number">Number: </label>
+        <input type="number" id="number" min="1" max="100">
+        <button onclick="generateTable()">Generate Table</button>
+    </fieldset>
+
+    <h2>Multiplication Table</h2>
+    <table id="table"></table>
+
+</body>
+  <script>
+    // Function to generate the multiplication table
+function generateTable() {
+    // Get the input number from the user
+    const number = document.getElementById("number").value;
+
+    // If the input is empty or not a valid number, alert the user
+    if (!number || number < 1 || number > 100) {
+        alert("Please enter a valid number between 1 and 100.");
+        return;
+    }
+
+    // Get reference to the table
+    const table = document.getElementById("table");
+
+    // Clear any previous table content
+    table.innerHTML = "";
+
+    // Start creating the table
+    let tableHTML = "<tr><th>Multiplication</th><th>Result</th></tr>";
+
+    // Generate the multiplication table (1 to 10)
+    for (let i = 1; i <= 10; i++) {
+        tableHTML += `<tr><td>${number} × ${i}</td><td>${number * i}</td></tr>`;
+    }
+
+    // Insert the table HTML into the table element
+    table.innerHTML = tableHTML;
+}
+
+  </script>
+</html>
