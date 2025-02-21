@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Word and Character Counter</title>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <h1>Live Word and Character Counter</h1>
+
+    <textarea id="inputText" rows="10" cols="50" placeholder="Type something..."></textarea>
+    
+    <div>
+        <p>Character Count: <span id="charCount">0</span></p>
+        <p>Word Count: <span id="wordCount">0</span></p>
+    </div>
+</body>
+<script>
+// Get references to the textarea, character count and word count elements
+const textarea = document.getElementById('inputText');
+const charCountElement = document.getElementById('charCount');
+const wordCountElement = document.getElementById('wordCount');
+
+// Function to update the word and character count
+function updateCounts() {
+    const text = textarea.value;
+
+    // Calculate character count
+    const charCount = text.length;
+    charCountElement.textContent = charCount;
+
+    // Calculate word count
+    const words = text.trim().split(/\s+/).filter(Boolean);
+    const wordCount = words.length;
+    wordCountElement.textContent = wordCount;
+
+    // Show an alert if the character count exceeds 200
+    if (charCount > 200) {
+        alert('You have exceeded 200 characters!');
+    }
+}
+
+// Add an event listener to update counts on input
+textarea.addEventListener('input', updateCounts);
+
+</script>
+</html>
