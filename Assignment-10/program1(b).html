@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game (do...while loop)</title>
+</head>
+<body>
+    <h1>Guess the Number Between 1 and 50</h1>
+    <p>Try your luck!</p>
+    <label for="guess">Enter your guess:</label>
+    <input type="number" id="guess" min="1" max="50">
+    <button onclick="startGameDoWhile()">Submit Guess</button>
+    <p id="message"></p>
+
+    <script>
+        let targetNumber = Math.floor(Math.random() * 50) + 1; // Random number between 1 and 50
+
+        function startGameDoWhile() {
+            let guess;
+            let message = document.getElementById("message");
+
+            // Reset the message on each new guess
+            message.textContent = "";
+
+            // Start the guessing process with do...while loop
+            do {
+                guess = parseInt(document.getElementById("guess").value); // Get user's guess
+
+                if (isNaN(guess) || guess < 1 || guess > 50) {
+                    message.textContent = "Please enter a number between 1 and 50.";
+                    return;
+                }
+
+                // Provide feedback based on guess
+                if (guess < targetNumber) {
+                    message.textContent = "Too low! Try again.";
+                } else if (guess > targetNumber) {
+                    message.textContent = "Too high! Try again.";
+                }
+            } while (guess !== targetNumber); // Repeat until the guess is correct
+
+            // Congratulate the user if the guess is correct
+            message.textContent = "Congratulations! You guessed the right number!";
+        }
+    </script>
+</body>
+</html>
