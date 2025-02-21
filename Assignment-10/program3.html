@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Order Form</title>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <h1>Pizza Order Form</h1>
+
+    <form id="pizzaForm">
+        <h2>Choose Your Pizza Size</h2>
+        <label>
+            <input type="radio" name="size" value="Small"> Small
+        </label>
+        <label>
+            <input type="radio" name="size" value="Medium"> Medium
+        </label>
+        <label>
+            <input type="radio" name="size" value="Large"> Large
+        </label>
+
+        <h2>Select Your Toppings</h2>
+        <label>
+            <input type="checkbox" name="topping" value="Cheese"> Cheese
+        </label>
+        <label>
+            <input type="checkbox" name="topping" value="Pepperoni"> Pepperoni
+        </label>
+        <label>
+            <input type="checkbox" name="topping" value="Mushrooms"> Mushrooms
+        </label>
+        <label>
+            <input type="checkbox" name="topping" value="Olives"> Olives
+        </label>
+        <label>
+            <input type="checkbox" name="topping" value="Bacon"> Bacon
+        </label>
+
+        <br><br>
+        <button type="submit">Submit Order</button>
+    </form>
+
+    <h2>Your Order Summary</h2>
+    <p id="orderSummary"></p>
+</body>
+  <script>
+    // Wait for the DOM to be fully loaded before attaching event listeners
+document.addEventListener("DOMContentLoaded", function() {
+    const pizzaForm = document.getElementById("pizzaForm");
+    const orderSummary = document.getElementById("orderSummary");
+
+    pizzaForm.addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent form from submitting (default action)
+
+        // Get selected pizza size
+        const size = document.querySelector('input[name="size"]:checked');
+        if (!size) {
+            alert("Please choose a pizza size.");
+            return;
+        }
+
+        // Get selected toppings
+        const selectedToppings = [];
+        const toppings = document.querySelectorAll('input[name="topping"]:checked');
+        toppings.forEach(function(topping) {
+            selectedToppings.push(topping.value);
+        });
+
+        // Create a summary of the order
+        let summary = `You ordered a ${size.value} pizza with the following toppings: `;
+        if (selectedToppings.length > 0) {
+            summary += selectedToppings.join(", ");
+        } else {
+            summary += "No toppings selected.";
+        }
+
+        // Display the order summary
+        orderSummary.textContent = summary;
+    });
+});
+
+  </script>
+</html>
