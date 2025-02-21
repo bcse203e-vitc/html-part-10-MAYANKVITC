@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country-State Selection</title>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <h1>Country-State Selection</h1>
+
+    <!-- Country Dropdown -->
+    <label for="country">Choose a country:</label>
+    <select id="country">
+        <option value="">Select a country</option>
+        <option value="USA">USA</option>
+        <option value="India">India</option>
+        <option value="UK">UK</option>
+    </select>
+
+    <!-- State Dropdown -->
+    <label for="state">Choose a state:</label>
+    <select id="state" disabled>
+        <option value="">Select a state</option>
+    </select>
+</body>
+  <script>
+    // Get references to the dropdowns
+const countryDropdown = document.getElementById("country");
+const stateDropdown = document.getElementById("state");
+
+// Define states for each country
+const states = {
+    USA: ["California", "Texas", "New York"],
+    India: ["Delhi", "Maharashtra", "Tamil Nadu"],
+    UK: ["England", "Scotland", "Wales"],
+};
+
+// Function to update the state dropdown based on selected country
+function updateStates() {
+    // Clear existing options in the state dropdown
+    stateDropdown.innerHTML = '<option value="">Select a state</option>';
+
+    // Get the selected country
+    const selectedCountry = countryDropdown.value;
+
+    // If a valid country is selected, populate the state dropdown
+    if (selectedCountry) {
+        // Enable the state dropdown
+        stateDropdown.disabled = false;
+
+        // Get the states for the selected country
+        const countryStates = states[selectedCountry];
+
+        // Add each state as an option in the state dropdown
+        countryStates.forEach(state => {
+            const option = document.createElement("option");
+            option.value = state;
+            option.textContent = state;
+            stateDropdown.appendChild(option);
+        });
+    } else {
+        // If no country is selected, disable the state dropdown
+        stateDropdown.disabled = true;
+    }
+}
+
+// Add event listener to country dropdown to update state dropdown on change
+countryDropdown.addEventListener("change", updateStates);
+
+  </script>
+</html>
