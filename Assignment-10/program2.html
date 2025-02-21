@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Background Color</title>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <h1>Change Background Color</h1>
+    <button id="redButton">Red</button>
+    <button id="blueButton">Blue</button>
+</body>
+<script>
+    // Get references to the buttons
+const redButton = document.getElementById("redButton");
+const blueButton = document.getElementById("blueButton");
+
+// Add event listeners for each button
+redButton.addEventListener("click", function() {
+    document.body.style.backgroundColor = "red"; // Change background to red
+});
+
+blueButton.addEventListener("click", function() {
+    document.body.style.backgroundColor = "blue"; // Change background to blue
+});
+
+</script>
+</html>
